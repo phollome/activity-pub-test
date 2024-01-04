@@ -23,7 +23,7 @@ export async function loader(args: LoaderFunctionArgs) {
               {
                 rel: "self",
                 type: "application/activity+json",
-                href: `${baseURL}/users/${username}`,
+                href: `${baseURL.origin}/users/${username}`,
               },
             ],
           },
