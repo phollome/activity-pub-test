@@ -7,8 +7,14 @@ export async function loader(args: LoaderFunctionArgs) {
 
   const url = new URL(request.url);
 
-  if (url.origin === baseURL && params.username === "phollome") {
-    const resourcePath = `${url.origin}${url.pathname}`;
+  // on render.com origin has http as protocol
+  const origin =
+    url.origin.includes("localhost") === false
+      ? url.origin.replace("http", "https")
+      : url.origin;
+
+  if (origin === baseURL && params.username === "phollome") {
+    const resourcePath = `${origin}${url.pathname}`;
 
     return json({
       "@context": [
@@ -30,7 +36,7 @@ export async function loader(args: LoaderFunctionArgs) {
       icon: {
         type: "Image",
         mediaType: "image/png",
-        url: `${url.origin}/images/${params.username}/avatar.png`,
+        url: `${origin}/images/${params.username}/avatar.png`,
       },
     });
   }
