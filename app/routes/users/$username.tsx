@@ -7,7 +7,7 @@ export async function loader(args: LoaderFunctionArgs) {
 
   const url = new URL(request.url);
 
-  if (url.origin === baseURL) {
+  if (url.origin === baseURL && params.username === "phollome") {
     const resourcePath = `${url.origin}${url.pathname}`;
 
     return json({
